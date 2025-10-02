@@ -80,7 +80,7 @@ project-simple/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/marcooliveira-ui/project-simple
    cd project-simple
    ```
 
