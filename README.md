@@ -307,4 +307,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For support or questions, please contact: support@carapi.com
+For support or questions, please contact: marco.oliveira@avocadotech.com.br
