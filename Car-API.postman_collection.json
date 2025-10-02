@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "car-management-api-collection",
+		"name": "Car Management API",
+		"description": "Collection for testing Car Management REST API with CRUD operations and pagination",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"health"
+							]
+						},
+						"description": "Check if API and database are running properly"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "Create Car",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Honda Civic\",\n  \"engine_version\": \"2.0\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "Create a new car"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Car - Toyota Corolla",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Toyota Corolla\",\n  \"engine_version\": \"1.8\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "Create another car for testing"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Car - Ford Mustang",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ford Mustang\",\n  \"engine_version\": \"4.0\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "Create a sports car"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cars (Default Pagination)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "Get all cars with default pagination (page=1, page_size=10, sort_by=created_at, sort_dir=desc)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cars (Custom Pagination)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars?page=1&page_size=5&sort_by=name&sort_dir=asc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "page_size",
+									"value": "5",
+									"description": "Items per page (max 100)"
+								},
+								{
+									"key": "sort_by",
+									"value": "name",
+									"description": "Sort by: name, engine_version, created_at"
+								},
+								{
+									"key": "sort_dir",
+									"value": "asc",
+									"description": "Sort direction: asc, desc"
+								}
+							]
+						},
+						"description": "Get cars with custom pagination parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cars (Sort by Engine)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars?page=1&page_size=10&sort_by=engine_version&sort_dir=desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								},
+								{
+									"key": "sort_by",
+									"value": "engine_version"
+								},
+								{
+									"key": "sort_dir",
+									"value": "desc"
+								}
+							]
+						},
+						"description": "Get cars sorted by engine version (descending)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars/{{car_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"{{car_id}}"
+							]
+						},
+						"description": "Get a specific car by UUID. Replace {{car_id}} with actual car UUID from create response."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Honda Civic Sport\",\n  \"engine_version\": \"2.0\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars/{{car_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"{{car_id}}"
+							]
+						},
+						"description": "Update a car. Replace {{car_id}} with actual car UUID."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car (Partial)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Honda Civic Type R\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars/{{car_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"{{car_id}}"
+							]
+						},
+						"description": "Partial update - only name field"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars/{{car_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"{{car_id}}"
+							]
+						},
+						"description": "Delete a car (soft delete). Replace {{car_id}} with actual car UUID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Validation Tests",
+			"item": [
+				{
+					"name": "Create Car - Invalid Name (Too Short)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"A\",\n  \"engine_version\": \"2.0\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "Test validation - name must be at least 2 characters (should return 422)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Car - Invalid Engine Version",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tesla Model 3\",\n  \"engine_version\": \"Electric\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "Test validation - engine_version must be one of: 1.0, 1.4, 1.5, 1.6, 1.8, 2.0, 2.4, 2.5, 3.0, 3.5, 4.0 (should return 422)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Car - Missing Required Fields",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Incomplete Car\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "Test validation - missing engine_version (should return 422)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car - Invalid UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars/invalid-uuid-123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"invalid-uuid-123"
+							]
+						},
+						"description": "Test invalid UUID format (should return 400)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car - Non-existent ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars/550e8400-e29b-41d4-a716-446655440000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"550e8400-e29b-41d4-a716-446655440000"
+							]
+						},
+						"description": "Test non-existent car ID (should return 404)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cars - Invalid Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cars?page=0&page_size=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Invalid - must be >= 1"
+								},
+								{
+									"key": "page_size",
+									"value": "200",
+									"description": "Invalid - max is 100"
+								}
+							]
+						},
+						"description": "Test invalid pagination parameters (should return 422)"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "car_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
