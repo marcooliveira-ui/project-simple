@@ -80,7 +80,7 @@ project-simple/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/marcooliveira-ui/project-simple
    cd project-simple
    ```
 
@@ -307,4 +307,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For support or questions, please contact: support@carapi.com
+For support or questions, please contact: marco.oliveira@avocadotech.com.br
